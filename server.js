@@ -7,6 +7,11 @@ app.use(cookieParser());
 
 // Define your translations
 const translations = {
+   ar : {
+      welcome: '! مرحبا',
+      greeting: '! مرحبا بالعالم',
+      changeLanguage: 'تغيير اللغة',
+   },
   en: {
     welcome: 'Welcome!',
     greeting: 'Hello, world!',
@@ -76,7 +81,7 @@ app.get('/', (req, res) => {
           text-decoration: none;
           padding: 8px 15px;
           margin: 0 5px;
-          border-radius: 20px;
+          border-radius: 10px;
           transition: all 0.3s ease;
           background-color: rgba(255,255,255,0.7);
         }
@@ -116,13 +121,14 @@ app.get('/', (req, res) => {
           max-width: 600px;
           transition: transform 0.3s ease;
         }
-        .container:hover {
+        .container: hover {
           transform: scale(1.02);
         }
       </style>
     </head>
     <body>
     <div class="language-switcher">
+      <a href="/?lang=ar">عربي</a> |
       <a href="/?lang=en">English</a> |
       <a href="/?lang=es">Español</a> |
       <a href="/?lang=fr">Français</a>
@@ -130,7 +136,7 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>${req.t.welcome}</h1>
       <p>${req.t.greeting}</p>
-      <p>${req.t.changeLanguage}: ${req.lang}</p>
+      <p>${req.t.changeLanguage} : ${req.lang}</p>
     </div>
     </body>
     </html>
