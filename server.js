@@ -8,8 +8,8 @@ app.use(cookieParser());
 // Define your translations
 const translations = {
    ar : {
-      welcome: '! مرحبا',
-      greeting: '! مرحبا بالعالم',
+      welcome: 'مرحبا!',
+      greeting: 'مرحبا بالعالم!',
       changeLanguage: 'تغيير اللغة',
    },
   en: {
@@ -38,7 +38,8 @@ app.use((req, res, next) => {
     res.cookie('lang', lang);
   }
   req.lang = lang;
-  req.t = translations[lang]; // Attach translation object to request
+  data = translations[lang]; // Attach translation object to request
+  console.log(data)
   next();
 });
 
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-      <title>${req.t.welcome}</title>
+      <title>${data.welcome}</title>
       <style>
         body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -81,7 +82,7 @@ app.get('/', (req, res) => {
           text-decoration: none;
           padding: 8px 15px;
           margin: 0 5px;
-          border-radius: 10px;
+          border-radius: 20px;
           transition: all 0.3s ease;
           background-color: rgba(255,255,255,0.7);
         }
@@ -121,7 +122,7 @@ app.get('/', (req, res) => {
           max-width: 600px;
           transition: transform 0.3s ease;
         }
-        .container: hover {
+        .container:hover {
           transform: scale(1.02);
         }
       </style>
@@ -134,9 +135,9 @@ app.get('/', (req, res) => {
       <a href="/?lang=fr">Français</a>
     </div>
     <div class="container">
-      <h1>${req.t.welcome}</h1>
-      <p>${req.t.greeting}</p>
-      <p>${req.t.changeLanguage} : ${req.lang}</p>
+      <h1>${data.welcome}</h1>
+      <p>${data.greeting}</p>
+      <p>${data.changeLanguage}: ${req.lang}</p>
     </div>
     </body>
     </html>
